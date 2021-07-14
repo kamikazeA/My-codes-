@@ -1,0 +1,97 @@
+/**
+KAMIKAZE
+**/
+#include<bits/stdc++.h>
+using namespace std;
+int arr[4]={1,1,1,1};
+int main()
+{
+    string one , two , three ;
+    cin >> one >> two >> three;
+    vector <string> str;
+    str.push_back(one);
+    str.push_back(two);
+    str.push_back(three);
+    string tst1 = one , tst2 = two , tst3=three;
+    reverse(tst1.begin(),tst1.end());
+    reverse(tst2.begin(),tst2.end());
+    if (one[0]==one[2] || two[0]==two[2]|| three[0]==three[2]||
+        tst1==two||tst1==three|| tst2==one||tst2==three || (one==two&& two==three)){
+        cout << "Impossible" << endl;
+        return 0 ;
+    }
+
+        tst1 = one , tst2 = two;
+    for (int i = 1 ; i <= 3 ; i++){
+            if (i==1){
+                if(tst1[0]==tst2[0]&&tst1[1]==tst2[1]&&tst1[2]==tst2[2])
+                    continue;
+                if (tst1[0]==tst2[2]&&tst1[1]!=tst2[1]&&tst1[2]==tst2[0])
+                    continue;
+                if(tst1[0]==tst3[0]&&tst1[1]==tst3[1]&&tst1[2]==tst3[2])
+                    continue;
+                if (tst1[0]==tst3[2]&&tst1[1]!=tst3[1]&&tst1[2]==tst3[0])
+                    continue;
+            }
+            if (i==2){
+                if(tst2[0]==tst3[0]&&tst2[1]==tst3[1]&&tst2[2]==tst3[2])
+                    continue;
+                if (tst2[0]==tst3[2]&&tst2[1]!=tst3[1]&&tst2[2]==tst3[0])
+                    continue;
+            }
+
+        string th = str[i-1];
+        if (th[1]=='>'){
+            arr[th[0]-0-64]++;
+            arr[th[2]-0-64]--;
+        }
+            if (th[1]=='<'){
+            arr[th[0]-0-64]--;
+            arr[th[2]-0-64]++;
+        }
+    }
+    if (arr[1]==arr[2]||arr[2]==arr[3]||arr[1]==arr[3]){
+        cout << "Impossible" << endl;
+        return 0 ;
+        }
+
+        int a = *max_element(arr+1,arr+4);
+        int b = *min_element(arr+1,arr+4);
+        for (int i = 1 ; i <=3 ; i++){
+            for (int j = 1 ; j <=3 ; j++){
+                if (i==1 && arr[j]==b){
+                    if (j==1)
+                        cout << "A";
+                    if (j==2)
+                        cout << "B";
+                    if (j==3)
+                        cout << "C";
+                       break;
+                }
+            if (i==2 &&(arr[j]!= b && arr[j]!= a)){
+                    if (j==1)
+                        cout << "A";
+                    if (j==2)
+                        cout << "B";
+                    if (j==3)
+                        cout << "C";
+                        break;
+            }
+            if (i==3 && arr[j]==a){
+                    if (j==1)
+                        cout << "A";
+                    if (j==2)
+                        cout << "B";
+                    if (j==3)
+                        cout << "C";
+                        break;
+            }
+
+
+            }
+        }
+
+
+}
+
+
