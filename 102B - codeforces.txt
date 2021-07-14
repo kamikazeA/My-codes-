@@ -1,0 +1,41 @@
+/**
+KAMIKAZE
+**/
+#include<bits/stdc++.h>
+using namespace std;
+long long num(long long n)
+{
+    long long ts = n, sum = 0;
+    while (ts!=0)
+    {
+        sum+= (ts%10);
+        ts = ts / 10;
+    }
+    return sum;
+}
+int main()
+{
+    string s;
+    cin >> s;
+    long long n=0;
+    for (int i = 0 ; i < s.size() ; i++)
+    {
+        n+=(s[i]-'0');
+    }
+
+    int clc = 0;
+    if (s.size()>1)
+    clc = 1;
+
+    while (n>9)
+    {
+        clc++;
+        n=num(n);
+    }
+
+    cout << clc << endl;
+    return 0;
+
+}
+
+
